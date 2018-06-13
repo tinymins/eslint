@@ -92,6 +92,33 @@ ruleTester.run("camelcase", rule, {
             options: [{ properties: "never" }]
         },
         {
+            code: "obj.value = 2;",
+            options: [{ properties: "always", propertiesStyle: "lower" }]
+        },
+        {
+            code: "obj.Value = 2;",
+            options: [{ properties: "always", propertiesStyle: "upper" }]
+        },
+        {
+            code: "obj.value = 2;",
+            options: [{ properties: "always", propertiesStyle: "all" }]
+        },
+        {
+            code: "obj.Value = 2;",
+            options: [{ properties: "always", propertiesStyle: "all" }]
+        },
+        {
+            code: "obj[ComponentA.name] = 2;",
+            options: [{ properties: "always", propertiesStyle: "lower" }]
+        },
+
+        /**
+         * {
+         *  code: "obj = { [ComponentA.name]: 2 };",
+         *   options: [{ properties: "always", propertiesStyle: "lower" }]
+         * },
+         */
+        {
             code: "var { category_id } = query;",
             options: [{ ignoreDestructuring: true }],
             parserOptions: { ecmaVersion: 6 }
@@ -302,6 +329,28 @@ ruleTester.run("camelcase", rule, {
                 {
                     messageId: "notCamelCase",
                     data: { name: "a_b" },
+                    type: "Identifier"
+                }
+            ]
+        },
+        {
+            code: "obj.Value = 2;",
+            options: [{ properties: "always", propertiesStyle: "lower" }],
+            errors: [
+                {
+                    messageId: "notCamelCase",
+                    data: { name: "Value" },
+                    type: "Identifier"
+                }
+            ]
+        },
+        {
+            code: "obj.value = 2;",
+            options: [{ properties: "always", propertiesStyle: "upper" }],
+            errors: [
+                {
+                    messageId: "notCamelCase",
+                    data: { name: "value" },
                     type: "Identifier"
                 }
             ]

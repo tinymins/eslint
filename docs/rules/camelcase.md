@@ -12,6 +12,9 @@ This rule has an object option:
 
 * `"properties": "always"` (default) enforces camelcase style for property names
 * `"properties": "never"` does not check property names
+* `"propertiesStyle": "all"` (default) allow property style in both upper and lower camelcase
+* `"propertiesStyle": "upper"` allow property style only be upper camelcase
+* `"propertiesStyle": "lower"` allow property style only be lower camelcase
 * `"ignoreDestructuring": false` (default) enforces camelcase style for destructured identifiers
 * `"ignoreDestructuring": true` does not check destructured identifiers
 
@@ -106,6 +109,63 @@ Examples of **correct** code for this rule with the `{ "properties": "never" }` 
 
 var obj = {
     my_pref: 1
+};
+```
+
+### propertiesStyle: "all"
+
+Examples of **correct** code for this rule with the `{ "propertiesStyle": "all" }` option:
+
+```js
+/*eslint camelcase: ["error", {properties: "always", propertiesStyle: "all"}]*/
+
+var obj = {
+    Upper: 1,
+    lower: 2
+};
+```
+
+### propertiesStyle: "upper"
+
+Examples of **incorrect** code for this rule with the default `{ "propertiesStyle": "upper" }` option:
+
+```js
+/*eslint camelcase: ["error", {properties: "always", propertiesStyle: "upper"}]*/
+
+var obj = {
+    upper: 1
+};
+```
+
+Examples of **correct** code for this rule with the `{ "propertiesStyle": "upper" }` option:
+
+```js
+/*eslint camelcase: ["error", {properties: "always", propertiesStyle: "upper"}]*/
+
+var obj = {
+    Upper: 1
+};
+```
+
+### propertiesStyle: "lower"
+
+Examples of **incorrect** code for this rule with the default `{ "propertiesStyle": "lower" }` option:
+
+```js
+/*eslint camelcase: ["error", {properties: "always", propertiesStyle: "lower"}]*/
+
+var obj = {
+    Lower: 1
+};
+```
+
+Examples of **correct** code for this rule with the `{ "propertiesStyle": "lower" }` option:
+
+```js
+/*eslint camelcase: ["error", {properties: "always", propertiesStyle: "lower"}]*/
+
+var obj = {
+    lower: 1
 };
 ```
 
